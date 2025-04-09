@@ -1,4 +1,5 @@
 version: "3.8"
+
 services:
   emqx:
     image: emqx/emqx:latest
@@ -10,19 +11,32 @@ services:
       - "8883:8883"
     restart: always
 
+
   mysql_data:
     image: mysql:latest
     container_name: mysql_cont
     ports: 
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: "rootpass"
-      MYSQL_DATABASE: "mysql_db"
-      MYSQL_USER: "m_user"
-      MYSQL_PASSWORD: "m_pass" 
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mysql_db
+      MYSQL_USER: m_user
+      MYSQL_PASSWORD: m_pass
     volumes:
       - ./mysql_data:/var/lib/mysql
     restart: always
+
+
+  phpmyadmin:
+    depends_on:
+      - mysql_data
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8090:80"
+    restart: always
+    environment:
+      PMA_HOST: mysql_data
+      MYSQL_ROOT_PASSWORD: rootpass
 
 volumes:
   mysql_data: {}
