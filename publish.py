@@ -7,5 +7,6 @@ broker_address = "localhost" # aqui indicamos o endereço do broker, nome do con
 client.connect(broker_address, 1883, 60) # conecta ao broker emqx na porta padrão com um timeout de 60 seg
 
 client.publish("metam/sofia", "Hello Pink World!") #publica no tópico que queremos :) em seguida a msg que queremos enviar
+client.publish("metam/sofia", "Olá Mundo Rosa!")
 
-time.sleep(1) # espera um tico antes de encerrar, gharantindo q a msg tenha sido enviada de fato
+time.sleep(1) # espera um tico antes de encerrar, garantindo q a msg tenha sido enviada de fato
