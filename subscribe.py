@@ -9,7 +9,7 @@ def on_connect(client, userdata, flags, rc): #userdata e flags são parâmetros 
 # def on_message e def on_connect são callbacks da biblioteca paho, padrão mesmo, essa serve para cada vez que uma mensagem chega no tópico que estamos, é chamada.
 def on_message(client, userdata, msg):
     print("Mensagem recebida no tópico:", msg.topic) 
-    print("Conteúdo da Mensagem (raw):", msg.paylo.decode())
+    print("Conteúdo da Mensagem (raw):", msg.payload.decode())
 
     try:
         dados = json.loads(msg.payload.decode())
