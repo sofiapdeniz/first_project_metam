@@ -12,7 +12,7 @@ mensagem = {   # aqui estou criando um dicionário, simulando dados de um sensor
     "temperatura": 23.7,
     "umidade": 61,
     "status": "ativo",
-    "timestamp": time.time()
+    "timestamp": time.time() # trem legal, serve para saber quando a mensagem foi enviada, ele conta todos os segundos que se passaram desde 1 de janeiro de 1970, na mensagem NESSE caso, irá retornar um numero gigantye pois representa os segundos, mas tem como sim transformar isso em uma data :) 
 }
 
 mensagem_json = json.dumps(mensagem) #json.dumps é oq transforma o dicionário em um texto no formato JSON, agora o dic "mensagem" se transformou em "mensagem_json"
