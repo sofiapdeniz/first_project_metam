@@ -8,20 +8,18 @@ def on_connect(client, userdata, flags, rc): #userdata e flags são parâmetros 
 
 # def on_message e def on_connect são callbacks da biblioteca paho, padrão mesmo, essa serve para cada vez que uma mensagem chega no tópico que estamos, é chamada.
 def on_message(client, userdata, msg):
-    print("Mensagem recebida no tópico:", msg.topic) 
-    print("Conteúdo da Mensagem (raw):", msg.payload.decode())
+    print("Mensagem recebida no tópico:", msg.topic) # exibe o nome do tópico que recebeu a mensagem
+    print("Conteúdo da Mensagem (raw):", msg.payload.decode()) # "msg.payloadé o conteúdo da msg mas em bytes, decode transforma de bytes para str(utf-8), então a mensagem vai chegar crua.
 
-    try:
+    try: # TENTA interpretar a string da msg como JSON e transformar em um dicionário python (linha abaixo)
         dados = json.loads(msg.payload.decode())
-        print("JSON decodificado:", dados)
-    except json.JSONDecodeError:
+        print("JSON decodificado:", dados) # se rolar, vai  retornar essa mensagem
+    except json.JSONDecodeError:  # caso contrário:
         print("Não foi possível decodificar a mensagem como JSON.")
 
-client = mqtt.Client()
-client.username_pw_set("sofia", "Tatimari13")
-
-client.on_connect = on_connect
-client.on_message = on_message
-client.connect("localhost", 1883, 60)
-
-client.loop_forever()
+client = mqtt.Client() # essa linha instancia um objeto da classe client, da bliblioteca paho, vai ser utilizado para se conectar ao broker, se inscrever em tópicos, reagir mensagens, etc...
+client.username_pw_set("sofia", "Tatimari13") #aqui estou configurando as credenciais para autenticação com o broker, como se estivesse falando "oi broker, é a sofia e minha senha é tatimari13, posso entrar?" :D
+client.on_connect = on_connect # atribuição da callback, toda vez que o cliente se conectar ao broker, essa função será chamada.
+client.on_message = on_message # atribuição da callback também, quando uma mensagem for recebida, essa função será chamada.  
+client.connect("localhost", 1883, 60) # esse método conecta ao broker
+client.loop_forever() # mantém o cliente rodando para sempre.

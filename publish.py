@@ -4,7 +4,7 @@ import json #adicionando o modulo JSON ne gata vamo testar :D
 
 client = mqtt.Client()    # cria o cliente mqtt, instancia um objeto da classe  Client da bib paho-mqtt, vou usar para publicar ou assinar msgs
 client.username_pw_set("sofia", "Tatimari13")  # credenciais padrão do emqx, usuário e senha que vou acessar :D
-broker_address = "localhost" # aqui indicamos o endereço do broker, nome do container broker
+broker_address = "localhost" # aqui indicamos o endereço do broker.
 client.connect(broker_address, 1883, 60) # conecta ao broker emqx na porta padrão com um timeout de 60 seg
 
 mensagem = {   # aqui estou criando um dicionário, simulando dados de um sensor
