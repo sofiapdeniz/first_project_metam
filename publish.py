@@ -17,6 +17,6 @@ mensagem = {   # aqui estou criando um dicionário, simulando dados de um sensor
 
 mensagem_json = json.dumps(mensagem) #json.dumps é oq transforma o dicionário em um texto no formato JSON, agora o dic "mensagem" se transformou em "mensagem_json"
 
-client.publish("metam/admin", mensagem_json) # mesmo esquema de antes, cliente.publish para enviar a mensagem, tópico em seguida e depois mandamos o dicionário que foi formatado em json e agora é uma variavel contendo JSON (str) "mensagem_json"
+client.publish("metam/sofia", mensagem_json) # mesmo esquema de antes, cliente.publish para enviar a mensagem, tópico em seguida e depois mandamos o dicionário que foi formatado em json e agora é uma variavel contendo JSON (str) "mensagem_json"
 
 time.sleep(1) # espera um tico antes de encerrar, garantindo q a msg tenha sido enviada de fato
