@@ -5,7 +5,7 @@ import mysql.connector # esse módulo serve para tratar os erros de uma forma ma
 # precisamos fazer uma função que será chamada quando a conexão com o broker for estabelecida, o paho chama automaticamente quando o client conecta ao broker
 def on_connect(client, userdata, flags, rc): #userdata e flags são parâmetros que não estaremos utilizando agora, portanto, o paho espera a assinatura correta, que são esses 4 argumentos, o python aceita tirar mas a biblioteca espera ter esses 4, pra não dar erro deixamos :) lembrando que existem maneiras de esconder, mas vamos deixar assim quietin
     print("Conectado com código de retorno:", rc) #rc significa "return code", indica se a conexão foi bem sucedida, deve retornar 0, se retornar outro valor está errado.
-    client.subscribe("metam/sofia") #aqui se inscrevemos no tópico, o cliente vai ouvir mensagens desse tópico.
+    client.subscribe("metam/admin") #aqui se inscrevemos no tópico, o cliente vai ouvir mensagens desse tópico.
 
 # def on_message e def on_connect são callbacks da biblioteca paho, padrão mesmo, essa serve para cada vez que uma mensagem chega no tópico que estamos, é chamada.
 def on_message(client, userdata, msg):
