@@ -61,3 +61,7 @@ client.on_message = on_message # atribuição da callback também, quando uma me
 client.connect("localhost", 1883, 60) # esse método conecta ao broker
 client.loop_forever() # mantém o cliente rodando para sempre.
 
+#insert manual:
+#INSERT INTO leituras (dispositivo, temperatura, umidade, status, timestamp)
+#VALUES ('sensor_1', 23.7, 60, 'ativo', 1744636936);
+
