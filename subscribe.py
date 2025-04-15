@@ -17,7 +17,7 @@ def on_message(client, userdata, msg):
         print("JSON decodificado:", dados) # se rolar, vai  retornar essa mensagem
 
         conexao = mysql.connector.connect( # aqui estamos fazendo a conexão do subscribe com o banco, bem simples, depois passamos todas as informações:
-            host='localhost', # aqui o host :)
+            host='mysql_data', # aqui o host :)
             database='mysql_db', # aqui é o banco, nome do banco :)
             user='m_user', # nosso querido e idolatrado user
             password='m_pass' # nossa querida e idolatrada senha
@@ -58,7 +58,7 @@ client = mqtt.Client() # essa linha instancia um objeto da classe client, da bli
 client.username_pw_set("admin", "Tatimari13") #aqui estou configurando as credenciais para autenticação com o broker, como se estivesse falando "oi broker, é a sofia e minha senha é tatimari13, posso entrar?" :D
 client.on_connect = on_connect # atribuição da callback, toda vez que o cliente se conectar ao broker, essa função será chamada.
 client.on_message = on_message # atribuição da callback também, quando uma mensagem for recebida, essa função será chamada.  
-client.connect("localhost", 1883, 60) # esse método conecta ao broker
+client.connect("emqx", 1883, 60) # esse método conecta ao broker
 client.loop_forever() # mantém o cliente rodando para sempre.
 
 #insert manual:
