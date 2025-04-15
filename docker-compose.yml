@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   emqx:
     image: emqx/emqx:latest
@@ -10,7 +8,6 @@ services:
       - "8083:8083"
       - "8883:8883"
     restart: always
-
 
   mysql_data:
     image: mysql:latest
@@ -26,10 +23,7 @@ services:
       - ./mysql_data:/var/lib/mysql
     restart: always
 
-
   phpmyadmin:
-    depends_on:
-      - mysql_data
     image: phpmyadmin/phpmyadmin
     ports:
       - "8090:80"
@@ -37,6 +31,16 @@ services:
     environment:
       PMA_HOST: mysql_data
       MYSQL_ROOT_PASSWORD: rootpass
+    depends_on:
+      - mysql_data
+
+  consumidor:
+    build: ./consumidor #diz pro docker construir a imagem baseado no dockerfile q criamos no diretorio consumidor
+    container_name: consumidor_mqtt
+    depends_on: 
+      - emqx
+      - mysql_data
+    restart: always
 
 volumes:
   mysql_data: {}
