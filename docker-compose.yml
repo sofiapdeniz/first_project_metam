@@ -7,6 +7,9 @@ services:
       - "18083:18083"
       - "8083:8083"
       - "8883:8883"
+    environment:
+      - EMQX_DASHBOARD__DEFAULT_USER__LOGIN=admin
+      - EMQX_DASHBOARD__DEFAULT_USER__PASSWORD=Tatimari13
     restart: always
 
   mysql_data:
@@ -35,7 +38,7 @@ services:
       - mysql_data
 
   consumidor:
-    build: ./consumidor #diz pro docker construir a imagem baseado no dockerfile q criamos no diretorio consumidor
+    build: ./consumidor 
     container_name: consumidor_mqtt
     depends_on: 
       - emqx
