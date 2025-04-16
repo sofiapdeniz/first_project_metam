@@ -3,7 +3,7 @@ import json
 import mysql.connector 
 
 def on_connect(client, userdata, flags, rc): 
-    print("Conectado com código de retorno:", rc) 
+    print("Conectado com código de retorno:", rc, flush="True")
     client.subscribe("metam/admin") 
 
 def on_message(client, userdata, msg):
